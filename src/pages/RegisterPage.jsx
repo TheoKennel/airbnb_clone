@@ -8,6 +8,7 @@ const RegisterPage = () => {
             <div className="mb-64 pl-9">
                 <h1 className="text-4xl text-center pb-1">Register</h1>
                 <form className="max-w-lg mx-auto">
+                    <input type="text" placeholder="Théo Kosv"/>
                     <input type="email" placeholder='your@email.com'/>
                     <input type="Mot de passe" placeholder='Mot de passe'/>
                     <button className="primary">Login</button>
