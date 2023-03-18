@@ -12,7 +12,7 @@ app.use(cors({
 app.get('/test', (req,res) => {
     res.json('test ok');
 });
-
+//fva9xH4X4JwjkwPL
 app.post('/register', (req,res) => {
     const {name,email,password} = req.body;
     res.json({name,email,password});
