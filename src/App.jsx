@@ -5,7 +5,7 @@ import {Route, Routes} from "react-router-dom";
 import Layout from "./Content/Layout.jsx";
 import axios from "axios";
 
-axios.defaults.baseURL = 'http://localhost:5173';
+axios.defaults.baseURL = 'http://localhost:4000';
 const App = () => {
     return (
         <Routes>
