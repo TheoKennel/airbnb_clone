@@ -9,7 +9,7 @@ const LoginPage = () => {
                 <h1 className="text-4xl text-center pb-1">Login</h1>
                 <form className="max-w-lg mx-auto">
                     <input type="email" placeholder='your@email.com'/>
-                    <input type="Mot de passe" placeholder='Mot de passe'/>
+                    <input type="password" placeholder='Mot de passe'/>
                     <button className="primary">Login</button>
                     <div className="text-center py-2 text-gray-500">
                         Vous n'avez pas encore de compte ? <Link to={'/register'} className="underline text-black"> Inscrivez-vous </Link>
