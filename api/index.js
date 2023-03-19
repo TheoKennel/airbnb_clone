@@ -12,14 +12,13 @@ app.use(cors({
     origin:'http://localhost:5173',
 }));
 
-console.log(process.env.MONGO_URL)
 mongoose.connect(process.env.MONGO_URL);
 
 
 app.get('/test', (req,res) => {
     res.json('test ok');
 });
-//fva9xH4X4JwjkwPL
+
 app.post('/register', (req,res) => {
     const {name,email,password} = req.body;
     res.json({name,email,password});
