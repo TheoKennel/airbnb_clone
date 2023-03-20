@@ -4,11 +4,14 @@ import mongoose from "mongoose";
 import dotenv from 'dotenv';
 import UserModel from "./models/User.js";
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 dotenv.config();
+const app = express();
 
 const bcryptSalt = bcrypt.genSaltSync(10);
+const jwtSecret = 'sdlfkjdflkjsf';
 
-const app = express();
+
 app.use(express.json());
 
 app.use(cors({
@@ -37,6 +40,28 @@ app.post('/register', async (req,res) => {
         res.status(422).json(e);
     }
 });
+
+app.post('/api/login', async (req,res) => {
+    const {email,password} = req.body;
+    const userDoc = await UserModel.findOne({email});
+    if (userDoc) {
+        const passOk = bcrypt.compareSync(password, userDoc.password);
+        if (passOk) {
+            jwt.sign({
+                email:userDoc.email,
+                id:userDoc._id
+            }, jwtSecret, {}, (err,token) => {
+                if (err) throw err;
+                res.cookie('token', token).json(userDoc);
+            });
+        } else {
+            res.status(422).json('pass not ok');
+        }
+    } else {
+        res.json('not found');
+    }
+});
+
 
 
 app.listen(4000);

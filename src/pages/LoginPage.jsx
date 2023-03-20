@@ -9,9 +9,9 @@ const LoginPage = () => {
     const handleLogginSubmit = async (ev) => {
         ev.preventDefault();
         try {
-            await axios.post('/login', {email, password});
-            alert('Connexion réussie')
-        } catch (e) {
+            const response = await axios.post('/api/login', {email, password});
+                alert('Connexion réussie');
+            } catch (e) {
             alert('Connexion échouée, veuillez réessayer');
         }
     }
