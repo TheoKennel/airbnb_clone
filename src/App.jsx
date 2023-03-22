@@ -4,11 +4,13 @@ import React from 'react';
 import {Route, Routes} from "react-router-dom";
 import Layout from "./Content/Layout.jsx";
 import axios from "axios";
+import {UserContextProvider} from "./Content/UserContext.jsx";
 
 axios.defaults.baseURL = 'http://localhost:4000';
 axios.defaults.withCredentials = true;
 const App = () => {
     return (
+        <UserContextProvider>
         <Routes>
             <Route path="/" element={<Layout/>} >
                 <Route index element={<IndexPage/>} />
@@ -16,6 +18,7 @@ const App = () => {
                 <Route path="/register" element={<RegisterPage/>}/>
             </Route>
         </Routes>
+        </UserContextProvider>
     );
 };
 
