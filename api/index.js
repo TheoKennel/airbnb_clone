@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import dotenv from 'dotenv';
 import UserModel from "./models/User.js";
 import bcrypt from 'bcryptjs';
+import cookieParser from 'cookie-parser';
 import jwt from 'jsonwebtoken';
 dotenv.config();
 const app = express();
@@ -13,7 +14,7 @@ const jwtSecret = 'sdlfkjdflkjsf';
 
 
 app.use(express.json());
-
+app.use(cookieParser());
 app.use(cors({
     credentials:true,
     origin:'http://localhost:5173',
@@ -62,6 +63,17 @@ app.post('/api/login', async (req,res) => {
     }
 });
 
-
+app.get('/profile', (req,res) => {
+    const {token} = req.cookies;
+    if (token) {
+        jwt.verify(token, jwtSecret, {}, (err, user) => {
+            if (err) throw err;
+            res.json(user);
+        })
+    } else {
+        res.json(null);
+    }
+    res.json({token});
+})
 
 app.listen(4000);
