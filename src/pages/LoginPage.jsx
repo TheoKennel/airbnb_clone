@@ -1,20 +1,27 @@
 import React, {useState} from 'react';
 import Header from "../Content/Header.jsx";
-import {Link} from "react-router-dom";
+import {Link, Navigate} from "react-router-dom";
 import axios from "axios";
 
 const LoginPage = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [redirect, setRedirect] = useState(false);
     const handleLogginSubmit = async (ev) => {
         ev.preventDefault();
         try {
-            const response = await axios.post('/api/login', {email, password});
+            const response = await axios.post('/api/login', {email, password}, {withCredentials: true});
                 alert('Connexion réussie');
+                setRedirect(true);
             } catch (e) {
             alert('Connexion échouée, veuillez réessayer');
         }
     }
+
+    if (redirect) {
+        return <Navigate to={'/'} />
+    }
+
     return  (
         <div className="mt-4 grow flex items-center justify-around">
             <div className="mb-64 pl-9">
