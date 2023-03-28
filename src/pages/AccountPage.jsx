@@ -14,10 +14,10 @@ const AccountPage = () => {
     }
     return (
         <div>
-            <nav className="w-full flex mt-8 gap-4">
-                <Link className="p-2 px-4 bg-gray-300 rounded-full" to={'/account'}>My places</Link>
-                <Link className="p-2 px-4" to={'/account/bookings'}>My bookings</Link>
-                <Link  className="p-2 px-4" to={'/account/places'}>My accommodations</Link>
+            <nav className="w-full flex justify-center mt-8 gap-2">
+                <Link className="p-2 px-6 bg-primary text-white rounded-full" to={'/account'}>My profile</Link>
+                <Link className="p-2 px-6" to={'/account/bookings'}>My bookings</Link>
+                <Link  className="p-2 px-6" to={'/account/places'}>My accommodations</Link>
             </nav>
         </div>
     );
