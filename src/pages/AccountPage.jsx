@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {UserContext} from "../Content/UserContext.jsx";
-import {Navigate} from "react-router-dom";
+import {Link, Navigate} from "react-router-dom";
 
 const AccountPage = () => {
     const {ready, user} = useContext(UserContext)
@@ -13,7 +13,13 @@ const AccountPage = () => {
         return <Navigate to={'/login'}/>
     }
     return (
-        <div>account page for {user?.name}</div>
+        <div>
+            <nav className="w-full flex mt-8 gap-4">
+                <Link className="p-2 px-4 bg-gray-300 rounded-full" to={'/account'}>My places</Link>
+                <Link className="p-2 px-4" to={'/account/bookings'}>My bookings</Link>
+                <Link  className="p-2 px-4" to={'/account/places'}>My accommodations</Link>
+            </nav>
+        </div>
     );
 };
 
