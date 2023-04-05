@@ -1,9 +1,9 @@
 import React, {useContext} from 'react';
 import {UserContext} from "../Content/UserContext.jsx";
-import {Link, Navigate, useParams} from "react-router-dom";
+import {Link, Navigate, redirect, useParams} from "react-router-dom";
 
 const AccountPage = () => {
-    const {ready, user} = useContext(UserContext)
+    const {ready, user, setUser} = useContext(UserContext)
 
     let {subpage} =  useParams();
     if(subpage === undefined) {
@@ -15,8 +15,12 @@ const AccountPage = () => {
         return 'Loading...';
     }
 
-    if(ready && !user) {
+    if(ready && !user && !redirect) {
         return <Navigate to={'/login'}/>
+    }
+
+    if (redirect) {
+        return <Navigate to={redirect} />
     }
 
 
