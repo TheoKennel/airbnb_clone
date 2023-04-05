@@ -10,6 +10,9 @@ const AccountPage = () => {
         subpage = 'profile'
     }
 
+    async function logout() {
+        await axios.post('/logout')
+    }
 
     if(!ready) {
         return 'Loading...';
@@ -42,7 +45,7 @@ const AccountPage = () => {
             {subpage === 'profile' && (
             <div className="text-center max-w-lg mx-auto">
                 Connecté en tant que {user.name} ({user.email}) <br/>
-                <button className="primary max-w-sm mt-2">Déconnexion</button>
+                <button onClick={logout}  className="primary max-w-sm mt-2">Déconnexion</button>
             </div>
             )}
 
